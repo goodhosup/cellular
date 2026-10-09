@@ -1,0 +1,220 @@
+/* ------------------------------------------------------------------
+   Cellular Handbook — 사이트 공통 스타일
+   레벨 체계:  기초(lv1) → 중급(lv2) → 전문가(lv3)
+   아이콘은 셀룰러 신호 막대(1·2·3칸)로 난이도를 표현
+   ------------------------------------------------------------------ */
+
+:root {
+  --lv1: #1baf7a;   /* 기초  */
+  --lv2: #2a78d6;   /* 중급  */
+  --lv3: #e34948;   /* 전문가 */
+  --spec: #4a3aa7;  /* 스펙 참조 */
+
+  --md-admonition-icon--basic: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="15" width="4" height="6" rx="1"/><rect x="10.25" y="10.75" width="3.5" height="9.5" rx="1" fill="none" stroke="black" stroke-width="1.5"/><rect x="17.25" y="5.75" width="3.5" height="14.5" rx="1" fill="none" stroke="black" stroke-width="1.5"/></svg>');
+  --md-admonition-icon--intermediate: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="15" width="4" height="6" rx="1"/><rect x="10" y="10" width="4" height="11" rx="1"/><rect x="17.25" y="5.75" width="3.5" height="14.5" rx="1" fill="none" stroke="black" stroke-width="1.5"/></svg>');
+  --md-admonition-icon--expert: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="15" width="4" height="6" rx="1"/><rect x="10" y="10" width="4" height="11" rx="1"/><rect x="17" y="5" width="4" height="16" rx="1"/></svg>');
+  --md-admonition-icon--spec: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM7 11v1.6h10V11H7zm0 3.5v1.6h10v-1.6H7zm0 3.5v1.6h7V18H7z"/></svg>');
+}
+
+/* ---------- 커스텀 admonition: basic / intermediate / expert / spec ---------- */
+.md-typeset .admonition.basic,
+.md-typeset details.basic { border-color: var(--lv1); }
+.md-typeset .basic > .admonition-title,
+.md-typeset .basic > summary { background-color: color-mix(in srgb, var(--lv1) 12%, transparent); }
+.md-typeset .basic > .admonition-title::before,
+.md-typeset .basic > summary::before {
+  background-color: var(--lv1);
+  -webkit-mask-image: var(--md-admonition-icon--basic);
+          mask-image: var(--md-admonition-icon--basic);
+}
+
+.md-typeset .admonition.intermediate,
+.md-typeset details.intermediate { border-color: var(--lv2); }
+.md-typeset .intermediate > .admonition-title,
+.md-typeset .intermediate > summary { background-color: color-mix(in srgb, var(--lv2) 12%, transparent); }
+.md-typeset .intermediate > .admonition-title::before,
+.md-typeset .intermediate > summary::before {
+  background-color: var(--lv2);
+  -webkit-mask-image: var(--md-admonition-icon--intermediate);
+          mask-image: var(--md-admonition-icon--intermediate);
+}
+
+.md-typeset .admonition.expert,
+.md-typeset details.expert { border-color: var(--lv3); }
+.md-typeset .expert > .admonition-title,
+.md-typeset .expert > summary { background-color: color-mix(in srgb, var(--lv3) 12%, transparent); }
+.md-typeset .expert > .admonition-title::before,
+.md-typeset .expert > summary::before {
+  background-color: var(--lv3);
+  -webkit-mask-image: var(--md-admonition-icon--expert);
+          mask-image: var(--md-admonition-icon--expert);
+}
+
+.md-typeset .admonition.spec,
+.md-typeset details.spec { border-color: var(--spec); }
+.md-typeset .spec > .admonition-title,
+.md-typeset .spec > summary { background-color: color-mix(in srgb, var(--spec) 12%, transparent); }
+.md-typeset .spec > .admonition-title::before,
+.md-typeset .spec > summary::before {
+  background-color: var(--spec);
+  -webkit-mask-image: var(--md-admonition-icon--spec);
+          mask-image: var(--md-admonition-icon--spec);
+}
+
+/* ---------- 인라인 레벨 배지: <span class="lv lv1">기초</span> ---------- */
+.md-typeset .lv {
+  display: inline-block;
+  padding: 0 .55em;
+  border-radius: 1em;
+  font-size: .72em;
+  font-weight: 700;
+  line-height: 1.7;
+  vertical-align: middle;
+  color: #fff;
+  white-space: nowrap;
+}
+.md-typeset .lv1 { background: var(--lv1); }
+.md-typeset .lv2 { background: var(--lv2); }
+.md-typeset .lv3 { background: var(--lv3); }
+
+/* 헤딩 안에 들어간 배지 간격 */
+.md-typeset h2 .lv, .md-typeset h3 .lv { margin-left: .4em; }
+
+/* ---------- 그림: 다크 모드에서도 읽히도록 흰 카드 위에 표시 ---------- */
+.md-typeset figure { margin: 1.2em auto; }
+.md-typeset img.fig,
+.md-typeset figure img {
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.12);
+}
+.md-typeset figcaption {
+  font-size: .78em;
+  color: var(--md-default-fg-color--light);
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+/* ---------- 표: 스펙 표는 촘촘하게 ---------- */
+.md-typeset table:not([class]) { font-size: .74rem; }
+.md-typeset table:not([class]) th { white-space: nowrap; }
+
+/* ---------- Mermaid: 너비 제한 해제 ---------- */
+.md-typeset .mermaid { text-align: center; }
+
+/* ---------- 홈 카드 그리드 ---------- */
+.md-typeset .grid.cards > ul > li { border-radius: 10px; }
+
+/* ---------- 작성 예정 페이지 표시 ---------- */
+.md-typeset .admonition.stub { border-color: var(--md-default-fg-color--lighter); }
+
+/* ---------- 헤딩 레벨 표시: "## 제목 { .l2 }" → 오른쪽에 배지 (목차에는 글자가 섞이지 않음) ---------- */
+.md-typeset :is(h2, h3, h4):is(.l1, .l2, .l3)::after {
+  display: inline-block;
+  margin-left: .5em;
+  padding: 0 .55em;
+  border-radius: 1em;
+  font-size: .52em;
+  font-weight: 700;
+  line-height: 1.7;
+  vertical-align: middle;
+  color: #fff;
+}
+.md-typeset :is(h2, h3, h4).l1::after { content: "기초";  background: var(--lv1); }
+.md-typeset :is(h2, h3, h4).l2::after { content: "중급";  background: var(--lv2); }
+.md-typeset :is(h2, h3, h4).l3::after { content: "전문가"; background: var(--lv3); }
+
+/* ---------- Mermaid 다이어그램 (javascripts/diagrams.mjs) ---------- */
+.md-typeset pre.diagram-src { visibility: hidden; height: 4rem; }   /* 렌더링 전 원문 숨김 */
+.md-typeset .diagram {
+  margin: 1.2em 0;
+  overflow-x: auto;
+  text-align: center;
+  cursor: zoom-in;
+}
+.md-typeset .diagram.is-wide {
+  text-align: left;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  padding: .5rem;
+}
+.md-typeset .diagram.is-wide::before {
+  content: "↔ 가로로 스크롤하거나 클릭해서 크게 보기";
+  display: block;
+  position: sticky;
+  left: 0;
+  font-size: .64rem;
+  color: var(--md-default-fg-color--light);
+  margin-bottom: .3rem;
+}
+.md-typeset .diagram svg { display: inline-block; }
+.md-typeset pre.diagram-error { color: var(--md-code-fg-color); white-space: pre-wrap; border-left: 4px solid var(--lv3); }
+
+.diagram-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: color-mix(in srgb, var(--md-default-bg-color) 96%, transparent);
+  display: flex;
+  flex-direction: column;
+}
+.diagram-overlay__close {
+  align-self: flex-end;
+  margin: .8rem 1rem;
+  padding: .3rem .9rem;
+  border-radius: 1rem;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font: inherit;
+  cursor: pointer;
+}
+.diagram-overlay__body {
+  flex: 1;
+  overflow: auto;
+  padding: 0 1rem 1rem;
+}
+
+/* ---------- 계산기 ---------- */
+.md-typeset .calc {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 10px;
+  padding: .9rem 1rem;
+  margin: 1rem 0 1.4rem;
+  background: var(--md-code-bg-color);
+}
+.md-typeset .calc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+  gap: .7rem .9rem;
+}
+.md-typeset .calc label {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  font-size: .7rem;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .calc input,
+.md-typeset .calc select {
+  font: inherit;
+  font-size: .78rem;
+  padding: .35rem .5rem;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 6px;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  min-width: 0;
+}
+.md-typeset .calc input:focus,
+.md-typeset .calc select:focus { outline: 2px solid var(--md-accent-fg-color); outline-offset: 1px; }
+.md-typeset .calc-result {
+  margin-top: .8rem;
+  padding-top: .7rem;
+  border-top: 1px dashed var(--md-default-fg-color--lightest);
+  font-size: .76rem;
+  min-height: 1.2rem;
+}
+.md-typeset .calc-big { font-size: 1.15rem; font-weight: 700; margin: .25rem 0; }
+.md-typeset .calc-big small { font-size: .62rem; font-weight: 400; color: var(--md-default-fg-color--light); }

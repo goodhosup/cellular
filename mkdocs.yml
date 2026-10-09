@@ -1,0 +1,264 @@
+site_name: Cellular Handbook — LTE · 5G NR · 6G
+site_description: 4G LTE부터 5G NR, 5G-Advanced, 6G까지 — 초급부터 전문가까지 단계적으로 읽는 이동통신 핸드북
+site_author: Cellular Handbook
+# GitHub 저장소를 만든 뒤 아래 두 줄을 실제 주소로 바꾸세요.
+site_url: https://goodhosup.github.io/cellular/
+repo_url: https://github.com/goodhosup/cellular
+repo_name: cellular
+edit_uri: edit/main/docs/
+copyright: 본문과 그림은 직접 작성했습니다. 3GPP 스펙 번호와 절(clause)은 출처 표기로만 인용합니다.
+
+theme:
+  name: material
+  language: ko
+  font:
+    text: Noto Sans KR
+    code: JetBrains Mono
+  icon:
+    logo: material/antenna
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: 다크 모드로 전환
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: 라이트 모드로 전환
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.path
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.tabs.link
+    - content.tooltips
+    - content.action.edit
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - path: javascripts/diagrams.mjs
+    type: module
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.mark
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.superfences:
+      custom_fences:
+        # Material 기본 Mermaid 통합 대신 javascripts/diagrams.mjs가 렌더링 (큰 시퀀스 다이어그램 가독성)
+        - name: mermaid
+          class: diagram-src
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - search:
+      lang:
+        - en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+
+validation:
+  anchors: warn
+
+watch:
+  - includes
+
+nav:
+  - 홈: index.md
+  - 시작하기:
+      - getting-started/index.md
+      - 이동통신 세대의 진화: getting-started/generations.md
+      - 3GPP와 릴리즈 타임라인: getting-started/3gpp-releases.md
+      - 스펙 문서 읽는 법: getting-started/reading-specs.md
+      - 학습 로드맵: getting-started/roadmap.md
+  - 공통 기초:
+      - basics/index.md
+      - 무선 전파와 채널: basics/radio-channel.md
+      - 디지털 변조 (QAM): basics/modulation.md
+      - OFDM 원리: basics/ofdm.md
+      - OFDMA와 DFT-s-OFDM: basics/ofdma-scfdma.md
+      - 채널 코딩 (Turbo·LDPC·Polar): basics/channel-coding.md
+      - HARQ: basics/harq.md
+      - MIMO 기초: basics/mimo.md
+      - 빔포밍: basics/beamforming.md
+      - 듀플렉싱 (FDD/TDD): basics/duplexing.md
+      - 셀룰러 개념과 간섭: basics/cellular-concept.md
+  - LTE (4G):
+      - lte/index.md
+      - 아키텍처:
+          - E-UTRAN과 EPC: lte/architecture/overview.md
+          - 네트워크 엔티티: lte/architecture/entities.md
+          - 인터페이스 (Uu·S1·X2): lte/architecture/interfaces.md
+          - 베어러와 QoS: lte/architecture/bearer-qos.md
+      - 프로토콜 스택:
+          - 개요 (CP·UP): lte/protocol/overview.md
+          - MAC: lte/protocol/mac.md
+          - RLC: lte/protocol/rlc.md
+          - PDCP: lte/protocol/pdcp.md
+          - RRC: lte/protocol/rrc.md
+          - NAS (EMM·ESM): lte/protocol/nas.md
+      - 물리계층:
+          - 프레임 구조: lte/phy/frame-structure.md
+          - 리소스 그리드: lte/phy/resource-grid.md
+          - 동기신호 (PSS·SSS): lte/phy/pss-sss.md
+          - PBCH와 MIB: lte/phy/pbch.md
+          - PCFICH·PHICH: lte/phy/pcfich-phich.md
+          - PDCCH와 DCI: lte/phy/pdcch-dci.md
+          - PDSCH: lte/phy/pdsch.md
+          - PUCCH와 UCI: lte/phy/pucch.md
+          - PUSCH: lte/phy/pusch.md
+          - PRACH: lte/phy/prach.md
+          - 참조신호 (CRS·DMRS·CSI-RS·SRS): lte/phy/reference-signals.md
+          - TBS와 MCS: lte/phy/tbs-mcs.md
+          - 전력 제어: lte/phy/power-control.md
+      - 절차:
+          - 셀 탐색과 시스템 정보: lte/procedures/cell-search.md
+          - 랜덤 액세스: lte/procedures/random-access.md
+          - Attach: lte/procedures/attach.md
+          - RRC 연결 관리: lte/procedures/rrc-connection.md
+          - Paging과 TAU: lte/procedures/paging-tau.md
+          - 핸드오버: lte/procedures/handover.md
+          - DRX: lte/procedures/drx.md
+          - 스케줄링: lte/procedures/scheduling.md
+      - 고급 기능:
+          - 전송 모드 (TM1–10): lte/advanced/transmission-modes.md
+          - 캐리어 집성 (CA): lte/advanced/carrier-aggregation.md
+          - CoMP와 eICIC: lte/advanced/comp-eicic.md
+          - VoLTE와 IMS: lte/advanced/volte-ims.md
+          - LAA·eLAA: lte/advanced/laa.md
+          - LTE-M과 NB-IoT: lte/advanced/lte-m-nbiot.md
+          - C-V2X: lte/advanced/v2x.md
+          - eMBMS: lte/advanced/mbms.md
+      - 측정과 성능:
+          - RSRP·RSRQ·SINR: lte/measurement/rsrp-rsrq.md
+          - CQI·PMI·RI: lte/measurement/csi.md
+          - 측정 이벤트: lte/measurement/events.md
+          - 처리량 계산: lte/measurement/throughput.md
+  - NR (5G):
+      - nr/index.md
+      - 아키텍처:
+          - NG-RAN 개요: nr/architecture/ng-ran.md
+          - 5GC와 SBA: nr/architecture/5gc-sba.md
+          - NSA와 SA: nr/architecture/nsa-sa.md
+          - CU/DU 분리와 O-RAN: nr/architecture/cu-du-oran.md
+          - QoS 플로우: nr/architecture/qos-flow.md
+          - 네트워크 슬라이싱: nr/architecture/network-slicing.md
+      - 프로토콜 스택:
+          - 개요와 SDAP: nr/protocol/overview.md
+          - MAC: nr/protocol/mac.md
+          - RLC: nr/protocol/rlc.md
+          - PDCP: nr/protocol/pdcp.md
+          - RRC: nr/protocol/rrc.md
+          - NAS (5GMM·5GSM): nr/protocol/nas.md
+      - 물리계층:
+          - Numerology와 프레임 구조: nr/phy/numerology.md
+          - 리소스 그리드와 Point A: nr/phy/resource-grid.md
+          - BWP: nr/phy/bwp.md
+          - 슬롯 포맷과 TDD 패턴: nr/phy/slot-format.md
+          - SSB 구조: nr/phy/ssb.md
+          - CORESET과 Search Space: nr/phy/coreset-searchspace.md
+          - PDCCH와 DCI: nr/phy/pdcch-dci.md
+          - PDSCH: nr/phy/pdsch.md
+          - PUCCH와 UCI: nr/phy/pucch.md
+          - PUSCH: nr/phy/pusch.md
+          - PRACH: nr/phy/prach.md
+          - DMRS·PTRS: nr/phy/dmrs-ptrs.md
+          - CSI-RS와 CSI 보고: nr/phy/csi-rs.md
+          - SRS: nr/phy/srs.md
+          - TBS와 MCS: nr/phy/tbs-mcs.md
+          - 전력 제어: nr/phy/power-control.md
+      - 빔 관리:
+          - 빔 관리 개요: nr/beam/overview.md
+          - TCI와 QCL: nr/beam/tci-qcl.md
+          - 빔 실패 복구: nr/beam/bfr.md
+      - 절차:
+          - 초기 접속: nr/procedures/initial-access.md
+          - 랜덤 액세스 (4-step·2-step): nr/procedures/random-access.md
+          - 등록 (Registration): nr/procedures/registration.md
+          - PDU 세션: nr/procedures/pdu-session.md
+          - RRC 상태와 INACTIVE: nr/procedures/rrc-states.md
+          - 핸드오버 (CHO·DAPS·LTM): nr/procedures/handover.md
+          - Paging: nr/procedures/paging.md
+          - 스케줄링과 HARQ: nr/procedures/scheduling-harq.md
+      - 주파수:
+          - FR1·FR2와 밴드: nr/spectrum/bands.md
+          - NR-ARFCN과 GSCN: nr/spectrum/arfcn-gscn.md
+      - 고급 기능:
+          - CA와 DC (EN-DC·NR-DC): nr/advanced/ca-dc.md
+          - URLLC: nr/advanced/urllc.md
+          - NR-U: nr/advanced/nr-u.md
+          - IAB: nr/advanced/iab.md
+          - Sidelink와 NR V2X: nr/advanced/sidelink.md
+          - 포지셔닝: nr/advanced/positioning.md
+          - RedCap: nr/advanced/redcap.md
+          - NTN (위성): nr/advanced/ntn.md
+          - UE 전력 절약: nr/advanced/power-saving.md
+          - DSS: nr/advanced/dss.md
+      - 측정과 성능:
+          - SS-RSRP·RSRQ·SINR: nr/measurement/ss-rsrp.md
+          - 측정 이벤트와 갭: nr/measurement/events-gaps.md
+          - 처리량 계산: nr/measurement/throughput.md
+  - 5G-Advanced:
+      - advanced5g/index.md
+      - Rel-18: advanced5g/rel18.md
+      - Rel-19: advanced5g/rel19.md
+      - Rel-20 (5G-A): advanced5g/rel20.md
+      - 무선 인터페이스 AI/ML: advanced5g/ai-ml.md
+      - 네트워크 에너지 절감: advanced5g/network-energy-saving.md
+      - XR과 저지연 서비스: advanced5g/xr.md
+      - Ambient IoT: advanced5g/ambient-iot.md
+  - 6G 맛보기:
+      - sixg/index.md
+      - IMT-2030 비전: sixg/imt-2030.md
+      - 3GPP 6G 일정: sixg/3gpp-6g-timeline.md
+      - 후보 기술: sixg/key-technologies.md
+  - 레퍼런스:
+      - reference/index.md
+      - LTE vs NR 비교: reference/lte-vs-nr.md
+      - 3GPP 스펙 인덱스: reference/spec-index.md
+      - 약어 사전: reference/glossary.md
+      - 계산기: reference/calculators.md
+      - 참고 자료: reference/resources.md

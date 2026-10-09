@@ -1,0 +1,6 @@
+# MkDocs 2.0은 플러그인·테마 체계가 바뀌어 Material과 호환되지 않으므로 1.x로 고정
+mkdocs>=1.6,<2
+mkdocs-material>=9.7,<10
+pymdown-extensions>=10.0
+matplotlib>=3.9
+numpy>=2.0
